@@ -117,6 +117,21 @@ public class MinPriorityQueueTest {
         assertEquals(d7, value);
     }
 
+    // @Test
+    // public void testEmpty(){
+
+    // }
+
+    @Test
+    public void testCreatingQueueFromArrayOfNodes(){
+        Node[] inputArray = {a100, b9, c101, d7};
+        MinPriorityQueue pq2 = new MinPriorityQueue(inputArray);
+        assertEquals("Min should be d7", d7, pq.extractMinimum());
+        assertEquals("Min should be b9", b9, pq.extractMinimum());
+        assertEquals("Min should be a100", a100, pq.extractMinimum());
+        assertEquals("Min should be c101", c101, pq.extractMinimum());
+    }
+
 
     public static void main(String args[]) {
         org.junit.runner.JUnitCore.main("src.test.ElementTest");

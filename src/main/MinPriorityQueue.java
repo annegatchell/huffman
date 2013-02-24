@@ -70,10 +70,8 @@ public class MinPriorityQueue<K extends Comparable<K>>{
 
 	private void buildMinHeap(K[] in){
 		size = in.length;
-		if(maxSize < size){
-			maxSize = size;
-			pqueue = (K[]) new Comparable[maxSize];
-		}
+		maxSize = size;
+		pqueue = (K[]) new Comparable[maxSize];
 		for(int i = size/2; i <= 0; i--){
 			minHeapify(i);
 		}
