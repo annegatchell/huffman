@@ -132,10 +132,14 @@ public class MinPriorityQueueTest {
         assertEquals(c101, value);
     }
 
-    // @Test
-    // public void testEmpty(){
-
-    // }
+    @Test
+    public void testEmpty(){
+        assertEquals(true, pq.isEmpty());
+        pq.insert(a100);
+        assertEquals(false, pq.isEmpty());
+        pq.extractMinimum();
+        assertEquals(true, pq.isEmpty());
+    }
 
     @Test
     public void testCreatingQueueFromArrayOfNodes(){
