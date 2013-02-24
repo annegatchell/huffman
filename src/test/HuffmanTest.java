@@ -7,7 +7,7 @@ import src.main.Node;
 import src.main.Huffman;
 import java.lang.Exception;
 
-public class NodeTest {
+public class HuffmanTest {
     Node a100;
     Node b9;
     Node c101;
