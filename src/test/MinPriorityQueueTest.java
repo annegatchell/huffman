@@ -14,6 +14,7 @@ public class MinPriorityQueueTest {
     Node b9;
     Node c101;
     Node d7;
+    boolean DEBUG;
 
     /**
      * Sets up the test fixture. 
@@ -26,6 +27,7 @@ public class MinPriorityQueueTest {
         b9 = new Node('b', 9, null, null);
         c101 = new Node('c', 101, null, null);
         d7 = new Node('d', 7, null, null);
+        DEBUG = false;
     }
 
     /**
@@ -59,15 +61,16 @@ public class MinPriorityQueueTest {
     
     @Test
     public void testInsert() {
-        System.out.println(a100);
         pq.insert(a100);
         Node[] array = new Node[4];
         array[0] = a100;
         String expected = "size = 1 " + Arrays.toString(array)+ "";
         String pqString = pq.toString();
-        System.out.println(Arrays.toString(array));
-        System.out.println("expected "+ expected);
-        System.out.println("pqString "+ pqString);
+        if(DEBUG){
+            System.out.println(Arrays.toString(array));
+            System.out.println("expected "+ expected);
+            System.out.println("pqString "+ pqString);
+        }
         assertEquals(expected, pqString);
         assertEquals(1, pq.getSize());
         pq.insert(b9);
@@ -75,8 +78,10 @@ public class MinPriorityQueueTest {
         array[0] = b9;
         expected = "size = 2 " + Arrays.toString(array); 
         pqString = pq.toString();
-        System.out.println("expected "+ expected);
-        System.out.println("pqString "+ pqString);
+        if(DEBUG){
+            System.out.println("expected "+ expected);
+            System.out.println("pqString "+ pqString);
+        }
         assertEquals(expected, pqString);
         assertEquals(2, pq.getSize());
     }
@@ -110,11 +115,21 @@ public class MinPriorityQueueTest {
         pq.insert(a100);
         pq.insert(b9);
         pq.insert(c101);
+        assertEquals(3, pq.getSize());
         value = pq.extractMinimum();
         assertEquals(b9, value);
+        assertEquals(2, pq.getSize());
         pq.insert(d7);
+        assertEquals(3, pq.getSize());
         value = pq.extractMinimum();
+        assertEquals(2, pq.getSize());
         assertEquals(d7, value);
+        value = pq.extractMinimum();
+        assertEquals(1, pq.getSize());
+        assertEquals(a100, value);
+        value = pq.extractMinimum();
+        assertEquals(0, pq.getSize());
+        assertEquals(c101, value);
     }
 
     // @Test
@@ -125,11 +140,18 @@ public class MinPriorityQueueTest {
     @Test
     public void testCreatingQueueFromArrayOfNodes(){
         Node[] inputArray = {a100, b9, c101, d7};
-        MinPriorityQueue pq2 = new MinPriorityQueue(inputArray);
-        assertEquals("Min should be d7", d7, pq.extractMinimum());
-        assertEquals("Min should be b9", b9, pq.extractMinimum());
-        assertEquals("Min should be a100", a100, pq.extractMinimum());
-        assertEquals("Min should be c101", c101, pq.extractMinimum());
+        MinPriorityQueue pq_array = new MinPriorityQueue(inputArray);
+        Node[] array = {d7, b9, c101, a100};
+        String expected = "size = 4 " + Arrays.toString(array)+ "";
+        if(DEBUG){
+            System.out.println("expected "+ expected);
+            System.out.println("pqString "+ pq_array.toString());
+        }
+        assertEquals(expected, pq_array.toString());
+        assertEquals("Min should be d7", d7, pq_array.extractMinimum());
+        assertEquals("Min should be b9", b9, pq_array.extractMinimum());
+        assertEquals("Min should be a100", a100, pq_array.extractMinimum());
+        assertEquals("Min should be c101", c101, pq_array.extractMinimum());
     }
 
 

@@ -56,10 +56,10 @@ public class MinPriorityQueue<K extends Comparable<K>>{
 		int smallest;
 		int l = heapLeft(i);
 		int r = heapRight(i);
-		if(l <= size && pqueue[l].compareTo(pqueue[i]) < 0){
+		if(l < size && pqueue[l].compareTo(pqueue[i]) < 0){
 			smallest = l;
 		}else smallest = i;
-		if(r <= size && pqueue[r].compareTo(pqueue[smallest]) < 0){
+		if(r < size && pqueue[r].compareTo(pqueue[smallest]) < 0){
 			smallest = r;
 		}
 		if(smallest != i){
@@ -68,11 +68,11 @@ public class MinPriorityQueue<K extends Comparable<K>>{
 		}
 	}
 
-	private void buildMinHeap(K[] in){
-		size = in.length;
+	private void buildMinHeap(K[] input){
+		size = input.length;
 		maxSize = size;
-		pqueue = (K[]) new Comparable[maxSize];
-		for(int i = size/2; i <= 0; i--){
+		pqueue = input;
+		for(int i = size/2; i >= 0; i--){
 			minHeapify(i);
 		}
 	}
