@@ -1,3 +1,17 @@
+/*
+*	This is a Node class for the construction of a Huffman
+*	encoder.
+*	It implements Comparable based on the frequencies of two Nodes.
+*	
+*	Author:
+*	Anne Gatchell annegatchell@gmail.com
+*
+*	Date:
+*	23 February 2013
+*
+*	Sources: CLRS, Sedgewick - Algorithms
+*/
+
 package src.main;
 
 public class Node implements Comparable<Node>{
@@ -26,6 +40,11 @@ public class Node implements Comparable<Node>{
 
 	public int getFrequency(){
 		return frequency;
+	}
+
+	@Override
+	public String toString(){
+		return (c + " " + frequency + " " + left + " " + right);
 	}
 
 }
