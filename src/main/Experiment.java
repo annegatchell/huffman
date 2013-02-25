@@ -52,7 +52,7 @@ public class Experiment{
 				s = generateString(a.size);
 				h = new Huffman(0, a.size);
 				h.encode(s);
-				a.setARuntime(t, h.getOpCounts());
+				a.setARuntime(t, h.getNumOps());
 			}
 		}
 		System.out.println("RESULTS: \n"+ toString());

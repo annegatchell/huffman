@@ -9,6 +9,7 @@ public class Huffman{
 	private int frequncies[];
 	private int firstChar;
 	private String codedString;
+	private int numOps = 0;
 
 
 	public Huffman(int first, int sizeOfAlpha, String input){
@@ -39,6 +40,7 @@ public class Huffman{
 		actualSizeOfAlphabet = pq.getSize();
 		//Generate the tree
 		buildTree(pq);
+		numOps += pq.getNumOps();
 		//Generate the table of codes
 		generateCodeTable(tree);
 		//Encode the message
@@ -66,8 +68,11 @@ public class Huffman{
 
 	private void generateCodeTable(Node x, String s){
 		if(x.isLeaf()){
+			numOps++; //test
 			//System.out.println("int "+(int)x.getChar()+" "+x.getChar());
 			codeTable[(int)x.getChar() - firstChar] = s;
+			numOps++; //subtraction
+			numOps++; //assignment
 			return;
 		}
 		generateCodeTable(x.getLeftNode(), s + '0');
@@ -80,6 +85,7 @@ public class Huffman{
 			x = pq.extractMinimum();
 			y = pq.extractMinimum();
 			z = new Node('.', x.getFrequency()+y.getFrequency(), x, y);
+			numOps++; //addition
 			pq.insert(z);
 		}
 		tree = pq.extractMinimum();
@@ -133,7 +139,7 @@ public class Huffman{
 			printTree(prefix + "|   ", n.getRightNode());
 		}
 	}
-	public int getOpCounts(){
-		return -1;
+	public int getNumOps(){
+		return numOps;
 	}
 }
