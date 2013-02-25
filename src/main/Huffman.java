@@ -1,25 +1,82 @@
 package src.main;
 
 public class Huffman{
-	int sizeOfAlphabet = 256; //ASCII
-	Node trie;
-	String original;
-	String compressed;
+	private int sizeOfAlphabet = 256; //ASCII
+	private int actualSizeOfAlphabet;
+	private Node tree;
+	private String original;
+	private boolean codeTable[];
+	private int frequncies[];
+	private int firstChar;
 
-	public Huffman(int sizeOfAlphabet, String input){
-		sizeOfAlphabet = sizeOfAlphabet;
+
+	public Huffman(int first, int sizeOfAlpha, String input){
+		sizeOfAlphabet = sizeOfAlpha;
 		original = input;
+		codeTable = new boolean[sizeOfAlphabet];
+		frequncies = new int[sizeOfAlphabet];
+		firstChar = first;
 	}
 
-	// public MinPriorityQueue encode(){
-		
-	// }
+	public Huffman(int first, int sizeOfAlpha){
+		sizeOfAlphabet = sizeOfAlpha;
+		codeTable = new boolean[sizeOfAlphabet];
+		frequncies = new int[sizeOfAlphabet];
+		firstChar = first;
+	}
 
-	// private char[] getCharFrequenciesFromString(String s){
-		
-	// }
+	//Returns
+	public Node encode(String input){
+		original = input;
+		//Tabulate frequencies of characters
+		calculateFrequencies();
+		//Create min priority queue
+		MinPriorityQueue pq = new MinPriorityQueue(sizeOfAlphabet);
+		generateFreqNodesAndAddToMinPQ(pq);
+		System.out.println(pq);
+		actualSizeOfAlphabet = pq.getSize();
+		//Generate the tree
 
-	private void buildTrie(){
+		tree = new Node('a',100, null, null);
+		return tree;
+	}
+
+	private void generateFreqNodesAndAddToMinPQ(MinPriorityQueue pq){
+		char c;
+		for(int i = 0; i < sizeOfAlphabet; i++){
+			if(frequncies[i] > 0){
+				pq.insert(new Node((char) (i+firstChar), frequncies[i], null, null));
+			}
+		}
+
+	}
+
+	private void calculateFrequencies(){
+		int index;
+		for(int i = 0; i < original.length(); i++){
+			index = ((int) original.charAt(i)) - firstChar;
+			//System.out.println("charat(i) " + (int)original.charAt(i) + 
+			//	" index " +index+" firstChar "+firstChar);
+			frequncies[index]++;
+		}
+	}
+
+	private int calculateOutPutSize(){
+		return -1;	
+	}
+
+	public void getCompressed(){
+	}
+
+	public int[] getFrequencies(){
+		return frequncies;
+	}
+
+	private void buildTree(){
 		
+	}
+
+	private void printTree(){
+
 	}
 }

@@ -12,6 +12,7 @@ public class HuffmanTest {
     Node b9;
     Node c101;
     Node d7;
+    Huffman h;
 
     /**
      * Sets up the test fixture. 
@@ -19,10 +20,6 @@ public class HuffmanTest {
      */
     @Before
     public void setUp() {
-        a100 = new Node('a', 100, null, null);
-        c101 = new Node('c', 101, a100, b9);
-        b9 = new Node('b', 9, null, null);
-        d7 = new Node('b', 9, null, null);
        
     }
 
@@ -36,9 +33,33 @@ public class HuffmanTest {
     }
 
     @Test
-    public void testBuildTrie() {
-        
+    public void testGetFrequncies(){
+        System.out.println((int) 'a');
+        h = new Huffman((int)'a', 4);
+        h.encode("aaabbc");
+        int[] expected = {3,2,1,0};
+        assertArrayEquals(expected, h.getFrequencies());
     }
+
+    // @Test
+    // public void testAllSameFreqs() {
+    //     String input = "abcd";
+    //     Huffman h = new Huffman(4, input);
+    //     Node trie = h.encode(input);
+    //     String output = h.getCompressed();
+    //     //assertEquals("output should be 'test'", "tes", output);
+
+    // }
+
+    // @Test
+    // public void testNotAllLettersUsed(){
+    //     String input = "abd";
+    //     Huffman h = new Huffman(4);
+    //     Node trie = h.encode(input);
+    //     String output = h.getCompressed();
+    //     //assertEquals("output should be 'test'", "test", output);
+
+    // }
 
     public static void main(String args[]) {
         org.junit.runner.JUnitCore.main("src.test.ElementTest");

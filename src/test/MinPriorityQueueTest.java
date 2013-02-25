@@ -38,26 +38,6 @@ public class MinPriorityQueueTest {
     public void tearDown() {
         
     }
-    // @Test
-    // public void testParent(){
-    //     assertEquals(0, pq.heapParent(1));
-    //     assertEquals(0, pq.heapParent(2));
-    //     assertEquals(1, pq.heapParent(3));
-    //     assertEquals(1, pq.heapParent(4));
-    // }
-
-    // @Test
-    // public void  testLeft(){
-    //     assertEquals(1, pq.heapLeft(0));
-    //     assertEquals(3, pq.heapLeft(1));
-    // }
-
-    // @Test
-    // public void  testRight(){
-    //     assertEquals(2, pq.heapRight(0));
-    //     assertEquals(4, pq.heapRight(1));
-    // }
-
     
     @Test
     public void testInsert() {
