@@ -6,7 +6,7 @@ public class Huffman{
 	private Node tree;
 	private String original;
 	private String codeTable[];
-	private int frequncies[];
+	private int frequencies[];
 	private int firstChar;
 	private String codedString;
 	private int numOps = 0;
@@ -15,14 +15,14 @@ public class Huffman{
 	public Huffman(int first, int sizeOfAlpha, String input){
 		sizeOfAlphabet = sizeOfAlpha;
 		original = input;
-		frequncies = new int[sizeOfAlphabet];
+		frequencies = new int[sizeOfAlphabet];
 		codeTable = new String[sizeOfAlphabet];
 		firstChar = first;
 	}
 
 	public Huffman(int first, int sizeOfAlpha){
 		sizeOfAlphabet = sizeOfAlpha;
-		frequncies = new int[sizeOfAlphabet];
+		frequencies = new int[sizeOfAlphabet];
 		codeTable = new String[sizeOfAlphabet];
 		firstChar = first;
 	}
@@ -53,7 +53,7 @@ public class Huffman{
 	}
 
 	public Node encodeWithPremadeFreq(int[] freq){
-		frequncies = freq;
+		frequencies = freq;
 		//Create min priority queue
 		MinPriorityQueue<Node> pq = new MinPriorityQueue<Node>(sizeOfAlphabet);
 		generateFreqNodesAndAddToMinPQ(pq);
@@ -112,8 +112,8 @@ public class Huffman{
 	private void generateFreqNodesAndAddToMinPQ(MinPriorityQueue<Node> pq){
 		char c;
 		for(int i = 0; i < sizeOfAlphabet; i++){
-			if(frequncies[i] > 0){
-				pq.insert(new Node((char)(i+firstChar), frequncies[i], null, null));
+			if(frequencies[i] > 0){
+				pq.insert(new Node((char)(i+firstChar), frequencies[i], null, null));
 			}
 		}
 	}
@@ -124,7 +124,7 @@ public class Huffman{
 			index = ((int) original.charAt(i)) - firstChar;
 			//System.out.println("charat(i) " + (int)original.charAt(i) + 
 			//	" index " +index+" firstChar "+firstChar);
-			frequncies[index]++;
+			frequencies[index]++;
 		}
 	}
 
@@ -132,11 +132,20 @@ public class Huffman{
 		return -1;	
 	}
 
-	public void getCompressed(){
+	public int getCodedStringLength(){
+		return codedString.length();
 	}
 
 	public int[] getFrequencies(){
-		return frequncies;
+		return frequencies;
+	}
+	public void printCodeTable(){
+		System.out.println("Frequencies:");
+		for(int i = 0; i < sizeOfAlphabet;i++){
+			if(frequencies[i] > 0){
+				System.out.println(((char) i)+"\t"+frequencies[i]);
+			}
+		}
 	}
 	public Node getTree(){
 		return tree;

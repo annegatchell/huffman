@@ -16,6 +16,7 @@ ALL_CLASSES = $(MAIN_CLASSES) $(TEST_CLASSES)
 all: test main
 runExp: main runExperiment 
 testsRun: test main runTests
+huffRun: main runHuffman
 test: $(TEST_CLASSES)
 main: $(MAIN_CLASSES)
 
@@ -24,6 +25,9 @@ runTests: $(TEST_EXE)
 
 runExperiment: $(MAIN_CLASSES)
 	java src.main.Experiment
+
+runHuffman: $(MAIN_CLASSES)
+	java src.main.HuffmanRobertFrost
 
 $(TEST_CLASSES): $(TEST_SRCS)
 	$(JCC) $(JFLAGS) $(TEST_SRCS)
