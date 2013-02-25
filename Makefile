@@ -14,12 +14,16 @@ ALL_CLASSES = $(MAIN_CLASSES) $(TEST_CLASSES)
 .PHONY: all clean test main testsRun
 
 all: test main
+runExp: main runExperiment 
 testsRun: test main runTests
 test: $(TEST_CLASSES)
 main: $(MAIN_CLASSES)
 
 runTests: $(TEST_EXE)
 	java src.test.AllTests
+
+runExperiment: $(MAIN_CLASSES)
+	java src.main.Experiment
 
 $(TEST_CLASSES): $(TEST_SRCS)
 	$(JCC) $(JFLAGS) $(TEST_SRCS)

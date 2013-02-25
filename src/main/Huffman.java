@@ -133,4 +133,7 @@ public class Huffman{
 			printTree(prefix + "|   ", n.getRightNode());
 		}
 	}
+	public int getOpCounts(){
+		return -1;
+	}
 }
