@@ -34,11 +34,33 @@ public class HuffmanTest {
 
     @Test
     public void testGetFrequncies(){
-        System.out.println((int) 'a');
+       //System.out.println((int) 'a');
         h = new Huffman((int)'a', 4);
         h.encode("aaabbc");
         int[] expected = {3,2,1,0};
         assertArrayEquals(expected, h.getFrequencies());
+        h = new Huffman((int)'a', 4);
+        h.encode("aaaaaaaaaaabbbbbbbbbbccccccccddddddd");
+        int[] expected2 = {11, 10, 8, 7};
+        assertArrayEquals(expected2, h.getFrequencies());
+    }
+
+    @Test
+    public void testBuildTree(){
+        //System.out.println((char) 0 +" "+ (int) ((char) -1));
+
+        h = new Huffman((int)'a', 4);
+        h.encode("aaaaaaaaaaabbbbbbbbbbccccccccddddddd");
+        Node a11 = new Node('a', 11, null, null);
+        Node b10 = new Node('b', 10, null, null);
+        Node c8 = new Node('c', 8, null, null);
+        Node d7 = new Node('d', 7, null, null);
+        Node dc = new Node('.', 15, d7, c8);
+        Node ba = new Node('.', 21, b10, a11);
+        Node expected = new Node('.', 36, dc, ba);
+        System.out.println("Expected: "+expected);
+        System.out.println("Tree    : "+h.getTree());
+        assertEquals(expected.toString(), h.getTree().toString());
     }
 
     // @Test
