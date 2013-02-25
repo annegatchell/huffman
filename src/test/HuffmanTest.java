@@ -63,6 +63,14 @@ public class HuffmanTest {
         assertEquals(expected.toString(), h.getTree().toString());
     }
 
+    @Test
+    public void testGeneratedCodeTable(){
+        h = new Huffman((int)'a', 4);
+        h.encode("aaaaaaaaaaabbbbbbbbbbccccccccddddddd");
+        String[] expected = {"11","10","01","00"};
+        assertArrayEquals(expected, h.getCodeTable());
+    }
+
     // @Test
     // public void testAllSameFreqs() {
     //     String input = "abcd";

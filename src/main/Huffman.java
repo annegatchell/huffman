@@ -5,7 +5,7 @@ public class Huffman{
 	private int actualSizeOfAlphabet;
 	private Node tree;
 	private String original;
-	private boolean codeTable[];
+	private String codeTable[];
 	private int frequncies[];
 	private int firstChar;
 
@@ -13,15 +13,15 @@ public class Huffman{
 	public Huffman(int first, int sizeOfAlpha, String input){
 		sizeOfAlphabet = sizeOfAlpha;
 		original = input;
-		codeTable = new boolean[sizeOfAlphabet];
 		frequncies = new int[sizeOfAlphabet];
+		codeTable = new String[sizeOfAlphabet];
 		firstChar = first;
 	}
 
 	public Huffman(int first, int sizeOfAlpha){
 		sizeOfAlphabet = sizeOfAlpha;
-		codeTable = new boolean[sizeOfAlphabet];
 		frequncies = new int[sizeOfAlphabet];
+		codeTable = new String[sizeOfAlphabet];
 		firstChar = first;
 	}
 
@@ -37,8 +37,25 @@ public class Huffman{
 		actualSizeOfAlphabet = pq.getSize();
 		//Generate the tree
 		buildTree(pq);
-		//tree = new Node('a',100, null, null);
+		//Generate the table of codes
+		generateCodeTable(tree);
+		//Encode the message
+
 		return tree;
+	}
+
+	private void generateCodeTable(Node root){
+		generateCodeTable(root, "");
+	}
+
+	private void generateCodeTable(Node x, String s){
+		if(x.isLeaf()){
+			System.out.println("int "+(int)x.getChar()+" "+x.getChar());
+			codeTable[(int)x.getChar() - firstChar] = s;
+			return;
+		}
+		generateCodeTable(x.getLeftNode(), s + '0');
+		generateCodeTable(x.getRightNode(), s+ '1');
 	}
 
 	private void buildTree(MinPriorityQueue<Node> pq){
@@ -84,6 +101,9 @@ public class Huffman{
 	}
 	public Node getTree(){
 		return tree;
+	}
+	public String[] getCodeTable(){
+		return codeTable;
 	}
 	private void printTree(){
 

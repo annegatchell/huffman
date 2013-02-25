@@ -46,5 +46,14 @@ public class Node implements Comparable<Node>{
 	public String toString(){
 		return (c + " " + frequency + " " + left + " " + right);
 	}
+	public char getChar(){
+		return c;
+	}
+	public Node getLeftNode(){
+		return left;
+	}
+	public Node getRightNode(){
+		return right;
+	}
 
 }
