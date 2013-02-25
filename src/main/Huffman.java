@@ -52,6 +52,23 @@ public class Huffman{
 		return tree;
 	}
 
+	public Node encodeWithPremadeFreq(int[] freq){
+		frequncies = freq;
+		//Create min priority queue
+		MinPriorityQueue<Node> pq = new MinPriorityQueue<Node>(sizeOfAlphabet);
+		generateFreqNodesAndAddToMinPQ(pq);
+		//System.out.println(pq);
+		actualSizeOfAlphabet = pq.getSize();
+		//Generate the tree
+		buildTree(pq);
+		numOps += pq.getNumOps();
+		//Generate the table of codes
+		generateCodeTable(tree);
+		//Print tree
+		//printTree("",tree);
+		return tree;
+	}
+
 	private void generateEncodedString(){
 		StringBuilder br = new StringBuilder();
 		int index;

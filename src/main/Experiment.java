@@ -1,32 +1,50 @@
 package src.main;
 
 import java.util.Random;
+import java.lang.Math;
 
 public class Experiment{
 	int numTrials;
-	int numDataPoints;
+	int numDataPointsPerPowerOf10;
 	AlphaSizeAndRuntime[] alphaSizes;
-	int maxUnicodeChars = 100;//0xFFFF; //65,535 chars
+	int maxUnicodeChars = 0xFFFF; //65,535 chars
 	
 	public Experiment(int numTries, int numDataPts){
 		numTrials = numTries;
-		numDataPoints = numDataPts;
+		numDataPointsPerPowerOf10 = numDataPts;
+		int expMax = (int) Math.log10(maxUnicodeChars);
+		int numDataPoints = expMax*numDataPointsPerPowerOf10;
 		alphaSizes = new AlphaSizeAndRuntime[numDataPoints];
-		int sizeAlpha;
-		int interval = maxUnicodeChars/numDataPoints;
-		for(int i = 0; i < numDataPoints;i++){
-			sizeAlpha = (i+1)*interval;
-			System.out.println("sizeAlpha "+sizeAlpha);
-			alphaSizes[i] = new AlphaSizeAndRuntime(sizeAlpha, numTrials);
+		//System.out.println("expMax "+expMax);
+		int e = 1;
+		int i = 0;
+		while(i < numDataPoints && e <= expMax){
+			alphaSizes[i] = new AlphaSizeAndRuntime((int)(2*Math.pow(10,e)), numTrials);
+			i++;
+			if(i >= alphaSizes.length){
+				break;
+			}
+			alphaSizes[i] = new AlphaSizeAndRuntime((int)(3*Math.pow(10,e)), numTrials);
+			i++;
+			if(i >= alphaSizes.length){
+				break;
+			}
+			alphaSizes[i] = new AlphaSizeAndRuntime((int)(7*Math.pow(10,e)), numTrials);
+			i++;
+			e++;
 		}
-
 	}
 	
 	class AlphaSizeAndRuntime{
 		int size;
 		int runtimes[];
 		public AlphaSizeAndRuntime(int s, int numTrials){
-			size = s;
+			if(size >= maxUnicodeChars){
+				size = maxUnicodeChars-1;
+			} else {
+				size = s;
+			}
+			//System.out.println(size);
 			runtimes = new int[numTrials];
 		}
 		public void setARuntime(int i, int r){
@@ -48,10 +66,25 @@ public class Experiment{
 		Huffman h;
 		for(AlphaSizeAndRuntime a : alphaSizes){
 			for(int t = 0; t < a.runtimes.length; t++){
-				System.out.println("SIZE "+a.size);
+				//System.out.println("SIZE "+a.size);
 				s = generateString(a.size);
 				h = new Huffman(0, a.size);
 				h.encode(s);
+				a.setARuntime(t, h.getNumOps());
+			}
+		}
+		System.out.println("RESULTS: \n"+ toString());
+	}
+
+	public void runWithPremadeFreqTable(){
+		int[] freqs;
+		Huffman h;
+		for(AlphaSizeAndRuntime a : alphaSizes){
+			for(int t = 0; t < a.runtimes.length; t++){
+				//System.out.println("SIZE "+a.size);
+				freqs = generateFrequencyArray(a.size);
+				h = new Huffman(0, a.size);
+				h.encodeWithPremadeFreq(freqs);
 				a.setARuntime(t, h.getNumOps());
 			}
 		}
@@ -67,6 +100,16 @@ public class Experiment{
 		return sb.toString();
 	}
 
+	public int[] generateFrequencyArray(int alphabetSize){
+		int[] freq = new int[alphabetSize];
+		Random rand = new Random();
+		int maxCharNum = alphabetSize/2;
+		for(int i = 0; i<alphabetSize;i++){
+			freq[i] = rand.nextInt(maxCharNum);
+		}
+		return freq;
+	}
+
 	public String generateString(int alphabetSize){
 		int length = 10*alphabetSize;
 		StringBuilder sb = new StringBuilder();
@@ -80,8 +123,9 @@ public class Experiment{
 	}
 
 	public static void main(String[] args){
-		Experiment e = new Experiment(1, 10);
-		e.run();
+		Experiment e = new Experiment(10, 3);
+		// e.run();
+		e.runWithPremadeFreqTable();
 	}
 	
 }
