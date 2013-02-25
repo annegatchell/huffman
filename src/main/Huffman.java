@@ -8,6 +8,7 @@ public class Huffman{
 	private String codeTable[];
 	private int frequncies[];
 	private int firstChar;
+	private String codedString;
 
 
 	public Huffman(int first, int sizeOfAlpha, String input){
@@ -40,8 +41,20 @@ public class Huffman{
 		//Generate the table of codes
 		generateCodeTable(tree);
 		//Encode the message
-
+		generateEncodedString();
+		//Print string
+		System.out.println(codedString);
 		return tree;
+	}
+
+	private void generateEncodedString(){
+		StringBuilder br = new StringBuilder();
+		int index;
+		for(int i = 0; i < original.length(); i++){
+			index = (int)original.charAt(i) - firstChar;
+			br.append(codeTable[index]);
+		}
+		codedString = br.toString();
 	}
 
 	private void generateCodeTable(Node root){
@@ -105,7 +118,10 @@ public class Huffman{
 	public String[] getCodeTable(){
 		return codeTable;
 	}
-	private void printTree(){
-
+	public String getEncodedString(){
+		return codedString;
+	}
+	public void printTree(){
+		
 	}
 }

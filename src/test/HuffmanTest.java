@@ -71,6 +71,18 @@ public class HuffmanTest {
         assertArrayEquals(expected, h.getCodeTable());
     }
 
+    @Test
+    public void testCodedString(){
+        h = new Huffman((int)'a', 4);
+        h.encode("aaaaaaaaaaabbbbbbbbbbccccccccddddddd");
+        String a = "1111111111111111111111";
+        String b = "10101010101010101010";
+        String c = "0101010101010101";
+        String d = "00000000000000";
+        String expected = a+b+c+d;
+        assertEquals(expected, h.getEncodedString());
+    }
+
     // @Test
     // public void testAllSameFreqs() {
     //     String input = "abcd";
