@@ -28,6 +28,7 @@ public class Huffman{
 
 	//Returns
 	public Node encode(String input){
+		System.out.println(input);
 		original = input;
 		//Tabulate frequencies of characters
 		calculateFrequencies();
@@ -65,7 +66,7 @@ public class Huffman{
 
 	private void generateCodeTable(Node x, String s){
 		if(x.isLeaf()){
-			System.out.println("int "+(int)x.getChar()+" "+x.getChar());
+			//System.out.println("int "+(int)x.getChar()+" "+x.getChar());
 			codeTable[(int)x.getChar() - firstChar] = s;
 			return;
 		}
@@ -82,7 +83,7 @@ public class Huffman{
 			pq.insert(z);
 		}
 		tree = pq.extractMinimum();
-		System.out.println("\n"+tree);
+		//System.out.println("\n"+tree);
 	}
 
 	private void generateFreqNodesAndAddToMinPQ(MinPriorityQueue<Node> pq){
