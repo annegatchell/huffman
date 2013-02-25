@@ -83,6 +83,7 @@ public class HuffmanTest {
         assertEquals(expected, h.getEncodedString());
     }
 
+
     // @Test
     // public void testAllSameFreqs() {
     //     String input = "abcd";

@@ -44,6 +44,8 @@ public class Huffman{
 		generateEncodedString();
 		//Print string
 		System.out.println(codedString);
+		//Print tree
+		printTree("",tree);
 		return tree;
 	}
 
@@ -121,7 +123,13 @@ public class Huffman{
 	public String getEncodedString(){
 		return codedString;
 	}
-	public void printTree(){
-		
+	public void printTree(String prefix, Node n){
+		System.out.println(prefix+"|-"+n.getCharAndFreq());
+		if(n.hasLeft()){
+			printTree(prefix + "|   ", n.getLeftNode());
+		}
+		if(n.hasRight()){
+			printTree(prefix + "|   ", n.getRightNode());
+		}
 	}
 }

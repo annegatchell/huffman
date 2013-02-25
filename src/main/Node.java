@@ -33,6 +33,12 @@ public class Node implements Comparable<Node>{
 	public boolean isLeaf(){
 		return(left == null && right == null);
 	}
+	public boolean hasLeft(){
+		return !(left == null);
+	}
+	public boolean hasRight(){
+		return !(right == null);
+	}
 
 	public int compareTo(Node n){
 		return frequency - n.getFrequency();
@@ -54,6 +60,9 @@ public class Node implements Comparable<Node>{
 	}
 	public Node getRightNode(){
 		return right;
+	}
+	public String getCharAndFreq(){
+		return ""+c+"-"+frequency;
 	}
 
 }
