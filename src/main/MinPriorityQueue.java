@@ -31,8 +31,15 @@ public class MinPriorityQueue<K extends Comparable<K>>{
 
 	public MinPriorityQueue(int maxSize){
 		pqueue = (K[]) new Comparable[maxSize];
+		//pqueue = (K.class, maxSize);
 		this.maxSize = maxSize;
 	}
+
+	// public K[] toArray(Class<K> clazz, int size){
+
+	// 	K[] result = (K[])Array.newInstance(clazz,size);
+	// 	return result;
+	// }
 
 	private int heapParent(int i){
 		return (i-1)/2;
