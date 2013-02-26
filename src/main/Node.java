@@ -9,7 +9,8 @@
 *	Date:
 *	23 February 2013
 *
-*	Sources: CLRS, Sedgewick - Algorithms
+*	Educational Sources: Professor Clauset Analysis of Algorithms Lectures,
+*						 CLRS, Sedgewick - Algorithms
 */
 
 package src.main;

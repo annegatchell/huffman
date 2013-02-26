@@ -1,3 +1,22 @@
+/*
+*	This is a test for encoding the poem The Road Not Taken
+*	by Robert Frost using my Huffman Encoder implementation
+*	 
+*	It encodes the poem, and the following infomation is printed
+*	to stdout:
+*	-
+*	-
+*	
+*	Author:
+*	Anne Gatchell annegatchell@gmail.com
+*
+*	Date:
+*	23 February 2013
+*
+*	Educational Sources: Professor Clauset Analysis of Algorithms Lectures,
+*						 CLRS, Sedgewick - Algorithms
+*/
+
 package src.main;
 
 public class HuffmanRobertFrost{
