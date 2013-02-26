@@ -18,18 +18,22 @@ public class Experiment{
 		//System.out.println("expMax "+expMax);
 		int e = 1;
 		int i = 0;
+		int num;
 		while(i < numDataPoints && e <= expMax){
-			alphaSizes[i] = new AlphaSizeAndRuntime((int)(2*Math.pow(10,e)), numTrials);
+			num = (int)(2*Math.pow(10,e));
+			alphaSizes[i] = new AlphaSizeAndRuntime(num, numTrials);
 			i++;
 			if(i >= alphaSizes.length){
 				break;
 			}
-			alphaSizes[i] = new AlphaSizeAndRuntime((int)(3*Math.pow(10,e)), numTrials);
+			num = (int)(3*Math.pow(10,e));
+			alphaSizes[i] = new AlphaSizeAndRuntime(num, numTrials);
 			i++;
 			if(i >= alphaSizes.length){
 				break;
 			}
-			alphaSizes[i] = new AlphaSizeAndRuntime((int)(7*Math.pow(10,e)), numTrials);
+			num = (int)(7*Math.pow(10,e));
+			alphaSizes[i] = new AlphaSizeAndRuntime(num, numTrials);
 			i++;
 			e++;
 		}

@@ -34,7 +34,8 @@ public class Huffman{
 		//Tabulate frequencies of characters
 		calculateFrequencies();
 		//Create min priority queue
-		MinPriorityQueue<Node> pq = new MinPriorityQueue<Node>(sizeOfAlphabet);
+		MinPriorityQueue<Node> pq = 
+			new MinPriorityQueue<Node>(sizeOfAlphabet);
 		generateFreqNodesAndAddToMinPQ(pq);
 		//System.out.println(pq);
 		actualSizeOfAlphabet = pq.getSize();
@@ -55,7 +56,8 @@ public class Huffman{
 	public Node encodeWithPremadeFreq(int[] freq){
 		frequencies = freq;
 		//Create min priority queue
-		MinPriorityQueue<Node> pq = new MinPriorityQueue<Node>(sizeOfAlphabet);
+		MinPriorityQueue<Node> pq = 
+			new MinPriorityQueue<Node>(sizeOfAlphabet);
 		generateFreqNodesAndAddToMinPQ(pq);
 		//System.out.println(pq);
 		actualSizeOfAlphabet = pq.getSize();
@@ -86,7 +88,6 @@ public class Huffman{
 	private void generateCodeTable(Node x, String s){
 		if(x.isLeaf()){
 			numOps++; //test
-			//System.out.println("int "+(int)x.getChar()+" "+x.getChar());
 			codeTable[(int)x.getChar() - firstChar] = s;
 			numOps++; //subtraction
 			numOps++; //assignment
@@ -106,14 +107,14 @@ public class Huffman{
 			pq.insert(z);
 		}
 		tree = pq.extractMinimum();
-		//System.out.println("\n"+tree);
 	}
 
 	private void generateFreqNodesAndAddToMinPQ(MinPriorityQueue<Node> pq){
 		char c;
 		for(int i = 0; i < sizeOfAlphabet; i++){
 			if(frequencies[i] > 0){
-				pq.insert(new Node((char)(i+firstChar), frequencies[i], null, null));
+				pq.insert(new Node((char)(i+firstChar), 
+					frequencies[i], null, null));
 			}
 		}
 	}
@@ -122,8 +123,6 @@ public class Huffman{
 		int index;
 		for(int i = 0; i < original.length(); i++){
 			index = ((int) original.charAt(i)) - firstChar;
-			//System.out.println("charat(i) " + (int)original.charAt(i) + 
-			//	" index " +index+" firstChar "+firstChar);
 			frequencies[index]++;
 		}
 	}

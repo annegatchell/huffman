@@ -37,12 +37,6 @@ public class MinPriorityQueue<K extends Comparable<K>>{
 		numOps++;
 	}
 
-	// public K[] toArray(Class<K> clazz, int size){
-
-	// 	K[] result = (K[])Array.newInstance(clazz,size);
-	// 	return result;
-	// }
-
 	private int heapParent(int i){
 		numOps++; //subtraction
 		numOps++; //division
@@ -110,9 +104,6 @@ public class MinPriorityQueue<K extends Comparable<K>>{
 	}
 
 	private void heapDecreaseKey(int i, K key){
-		// if(key.compareTo(pqueue[i]) > 0){
-		// 	throw new IllegalArgumentException("The new key is larger than the current key");
-		// }
 		pqueue[i] = key;
 		numOps++; //assignment
 		while(i > 0 && pqueue[heapParent(i)].compareTo(pqueue[i]) > 0){

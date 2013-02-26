@@ -24,7 +24,7 @@ public class Node implements Comparable<Node>{
 		frequency = freq;
 		if(freq < 0){
 			throw new IllegalArgumentException(ch + 
-					"should not have a negative frequency. Setting to 0");
+			"should not have a negative frequency. Setting to 0");
 		} 
 		left = l;
 		right = r;
