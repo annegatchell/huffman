@@ -1,3 +1,52 @@
+/*
+*	This is a Huffman Encoder implementation
+*	The encoder is intitialized with the unicode integer representation
+*	of the first letter of the alphabet for the string being encoded.
+*	A default value is 0. To use the entire 16-UTF library, intialize
+*	with 0 as the first character and 0x5555 as the alphabet size.
+*	For an ASCII representation, use 256 as the alphabet size.
+*	
+*	Then call encode() for the string that you want to encode.
+*	The frequencies of letters are calculated, then the letters
+*	are added to a MinPriorityQueue if they have a frequency greater
+*	than 0. This is because 0 frequencies should not be in the 
+*	Huffman Tree. Then, they are extracted two
+*	at a time, merged into a combined node, and reinserted. This
+* 	is repeated until there is one node in the queue, which is the
+*	entire tree.
+*
+*	The Nodes used have a character, a frequency and left and right
+*	Nodes. This allows for the structure of the Huffman tree.
+*
+*	Once the tree is generated, a table of endcodings is generated
+*	by traversing the tree for each alphabet letter that is in the 
+*	original string.
+*
+*	Then, the encoded string is generated using the table for outputting.
+*	In this implementation, the endcoding is a string representation,
+*	since it does not actually output a binary file. 
+*	Thus, the length of the string generated is equal to the number
+*	of bits in the encoding.
+*
+*	To output an actual binary file, a buffering system would need to
+*	be added, but it would not alter the Huffman Code.
+*	
+*	encode() also outputs an ASCII tree picture.
+*
+*	FOR EXPERIMENTS:
+*	
+*	
+*	
+*	
+*	Author:
+*	Anne Gatchell annegatchell@gmail.com
+*
+*	Date:
+*	23 February 2013
+*
+*	Sources: CLRS, Sedgewick - Algorithms
+*/
+
 package src.main;
 
 public class Huffman{
@@ -37,7 +86,7 @@ public class Huffman{
 		MinPriorityQueue<Node> pq = 
 			new MinPriorityQueue<Node>(sizeOfAlphabet);
 		generateFreqNodesAndAddToMinPQ(pq);
-		//System.out.println(pq);
+		//Set the actual size of the alphabet(no 0 frequencies)
 		actualSizeOfAlphabet = pq.getSize();
 		//Generate the tree
 		buildTree(pq);
@@ -59,7 +108,6 @@ public class Huffman{
 		MinPriorityQueue<Node> pq = 
 			new MinPriorityQueue<Node>(sizeOfAlphabet);
 		generateFreqNodesAndAddToMinPQ(pq);
-		//System.out.println(pq);
 		actualSizeOfAlphabet = pq.getSize();
 		//Generate the tree
 		buildTree(pq);

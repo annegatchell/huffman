@@ -2,7 +2,6 @@
 *	This is a generic Minimum Priority Queue implementation
 *	The objects used must implement Comparable.
 *	This is implemented as a Min Heap.
-*	If the 
 *	
 *	Author:
 *	Anne Gatchell annegatchell@gmail.com
