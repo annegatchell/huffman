@@ -34,8 +34,16 @@
 *	encode() also outputs an ASCII tree picture.
 *
 *	FOR EXPERIMENTS:
-*	
-*	
+*	For the runtime experiments, the function encodeWithPremadeFreq()
+*	method is used. This function bypasses the generation of the 
+*	frequency table, as well as the generation and printing of the
+*	encoded string. 
+*	This is appropriate, because the number of operations that matter
+*	are those between these two steps: generating a Huffman Encoding
+*	from the frequencies in a given string.
+*
+*	The variable numOps keeps track of how many operations are used.
+*	It also adds in the number of ops that MinPriorityQueue uses.
 *	
 *	
 *	Author:
