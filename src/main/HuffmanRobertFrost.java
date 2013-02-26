@@ -4,8 +4,12 @@
 *	 
 *	It encodes the poem, and the following infomation is printed
 *	to stdout:
-*	-
-*	-
+*	-the input poem string
+*	-the encoded binary string
+*	-an ASCII representation of the Huffman Tree
+*	-length of original string
+*	-length of code 
+*	-frequencie table
 *	
 *	Author:
 *	Anne Gatchell annegatchell@gmail.com
@@ -13,8 +17,6 @@
 *	Date:
 *	23 February 2013
 *
-*	Educational Sources: Professor Clauset Analysis of Algorithms Lectures,
-*						 CLRS, Sedgewick - Algorithms
 */
 
 package src.main;
