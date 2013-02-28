@@ -1,3 +1,24 @@
+/*
+*	This is a runtime experiment for a Huffman Encoder
+*	It runs an encoding on a randomly generated frequncy table for 
+*	alphabet sizes ranging from 10^1 to 10^4, at intervals of
+*	2*10^i, 3*10^i, and 7*10^i for good logarithmic plotting.
+*	
+*	It generates 10 random frequency tables for each alphabet size
+*	and encodes each one. It then outputs all 10 operation counts
+*	for each alphabet size.
+*
+*
+*	Author:
+*	Anne Gatchell annegatchell@gmail.com
+*
+*	Date:
+*	23 February 2013
+*
+*	Educational Sources: Professor Clauset Analysis of Algorithms Lectures,
+*						 CLRS, Sedgewick - Algorithms
+*/
+
 package src.main;
 
 import java.util.Random;
